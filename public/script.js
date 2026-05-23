@@ -92,7 +92,7 @@ function mostrarCarrossel(pedidos) {
 }
 
 function mostrarPedidos() {
-    fetch("http://localhost:3000/pedidos")
+    fetch("/pedidos")
     .then(function(resposta) {
         return resposta.json();
     })
@@ -109,7 +109,7 @@ function mostrarPedidos() {
 }
 
 function excluirPedido(id) {
-    fetch("http://localhost:3000/pedidos/" + id, {
+    fetch("/pedidos" + id, {
         method: "DELETE"
     })
     .then(function() {
@@ -134,7 +134,7 @@ formulario.addEventListener("submit", function(event) {
     }
     // Se algum campo estiver vazio, exibe um alerta e para.
 
-    fetch("http://localhost:3000/pedidos", {
+    fetch("/pedidos", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
