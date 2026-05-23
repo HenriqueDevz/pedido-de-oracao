@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!-- DOCTYPE html - Informa ao navegador que este arquivo é uma pagina html5 -->
+<html lang="pt-BR">
+<!-- html - Elemento raiz da página , lang - Código do idioma -->
+    <head>
+<!-- head - guarda informações invisiveis da pagina -->
+        <meta charset="UTF-8">
+        <!-- charset utf-8 - Especifica a codificação de caracteres -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- responsividade - Permite que a página seja responsiva em diferentes dispositivos -->
+        <title>Pedido de Oração</title>
+        <!-- title - Define o título da página exibido na aba do navegador -->
+        <link rel="stylesheet" href="style.css">
+        <!-- link - Conecta a página a um arquivo de estilo CSS externo -->
+    </head>
+<body>
+<!-- body - Elemento que contém o conteúdo visível da página -->
+<div class="container">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+         <h1>Pedido de Oração</h1>
+         <a href="/logout" style="
+        background-color: #6e450f;
+        color: white;
+        padding: 8px 14px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 13px;
+        font-family: 'Cinzel', serif;
+    ">Sair</a>
+  </div>
+<!-- div com flexbox para colocar o título e o botão lado a lado
+     justify-content: space-between — título na esquerda, botão na direita -->
+        <!-- h1 - Título principal da página -->
+        <p>Compartilhe seu pedido e estaremos orando por você.</p>
+        <!-- p - Parágrafo de descrição -->
+
+
+    <form id="formPedido">
+    <!-- form - Elemento que contém o formulário que o usuário preencherá -->
+        <label for="nome">Nome:</label><br>
+        <!-- label - Rótulo para o campo de entrada -->
+        <input type="text" id="nome" name="nome"><br><br>
+        <!-- input - Campo de entrada para o nome -->
+        <label for="pedido">Pedido de Oração:</label><br>
+        <!-- label - Rótulo para a área de texto -->
+        <textarea id="pedido" name="pedido"></textarea><br><br>
+        <!-- textarea - Área de texto para o pedido de oração -->
+        <button type="submit">Enviar Pedido</button>
+        <!-- button - Botão para enviar o formulário -->
+    </form>
+        <h2>Pedidos Recebidos</h2>
+        <div id="carrossel"></div>
+        <!-- div - Contêiner para exibir os pedidos recebidos -->
+         <div id="versiculo"> style=" 
+            text-align: center;
+            margin-top: 20px;
+            padding: 16px;
+            border-top: 1px solid #d4a85a;
+            font-style: italic;
+             color: #6e450f;
+             font-family: 'Cinzel', serif;
+            line-height: 1.6;
+         ">
+    </div>
+
+<script src="script.js"></script>
+<!-- script - Conecta a página a um arquivo de script JavaScript externo -->
+</body>
+</html>

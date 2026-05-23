@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loguin - Pedido de Oração</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pedido de Oração</h1>
+        <p>Digite a senha para acessar</p>
+
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" placeholder="Digite sua senha">
+        <button id="btnLogin">Entrar</button>
+
+        <p id="mengasemErro" style="color: red; display: none;">Senha incorreta. Tente novamente.</p>
+
+    </div>
+
+<script>
+    document.getElementById("btnLogin").addEventListener("click", function() {
+        const senha = document.getElementById("senha").value;
+        fetch("/login", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({senha: senha})
+        })
+        .then(function(resposta) {
+            return resposta.json();
+        })
+        .then(function(dados) {
+            if (dados.sucesso) {
+                window.location.href = "index.html";
+            } else {
+                document.getElementById("mengasemErro").style.display = "block";
+                document.getElementById("senha").value = "";
+                // Se a resposta do servidor indicar que o login foi bem-sucedido (dados.sucesso é true), o usuário é redirecionado para a página "index.html". Caso contrário, uma mensagem de erro é exibida, o campo de senha é limpo e o usuário pode tentar novamente.
+                document.getElementById("senha").focus();
+                // Após exibir a mensagem de erro e limpar o campo de senha, o foco é definido novamente no campo de senha para facilitar a próxima tentativa do usuário.
+            }
+         });
+     });
+  </script>
+
+</body>
+</html>

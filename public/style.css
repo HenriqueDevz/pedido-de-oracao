@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+/* Importa duas fontes do Google Fonts:
+   Cinzel - fonte elegante estilo clássico para títulos
+   Lato - fonte moderna e legível para textos */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Remove margens e paddings padrão do navegador
+   box-sizing garante que padding não aumente o tamanho dos elementos */
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-image: url("leao.png");
+    background-size: 80%;
+    background-color: #1a0a00;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    /* Branco levemente transparente */
+    padding: 40px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 480px;
+    /* max-width garante que no celular ocupa 100%
+       e no desktop não passa de 480px */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    color: #6e450f;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+p {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+label {
+    display: block;
+    font-weight: 700;
+    color: #4a2f0a;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid #d4a85a;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 16px;
+    transition: border-color 0.3s;
+    /* transition - anima a mudança de cor da borda */
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #6e450f;
+    /* Quando o campo está selecionado, a borda fica mais escura */
+}
+
+textarea {
+    height: 100px;
+    resize: none;
+    /* Impede que o usuário redimensione o textarea */
+}
+
+button {
+    background-color: #6e450f;
+    color: white;
+    padding: 14px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+button:hover {
+    background-color: #4a2f0a;
+}
+
+button:active {
+    transform: scale(0.98);
+    /* Pequeno efeito de pressionar ao clicar */
+}
+
+h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    color: #6e450f;
+    text-align: center;
+    margin-top: 32px;
+    margin-bottom: 16px;
+}
+
+#carrossel {
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#carrossel div {
+    animation: subirParaCima 0.6s ease forwards;
+}
+
+#carrossel p:first-child {
+    font-size: 16px;
+    font-weight: 700;
+    color: #4a2f0a;
+    margin-bottom: 6px;
+}
+
+#carrossel p:last-child {
+    font-size: 12px;
+    color: #999;
+}
+
+@keyframes subirParaCima {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVIDADE PARA CELULAR */
+@media (max-width: 480px) {
+    body {
+        background-size: 150%;
+        /* No celular a imagem fica maior para preencher */
+        align-items: flex-start;
+        padding: 16px;
+    }
+
+    .container {
+        padding: 24px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+}
+/* @media - aplica esses estilos só quando
+   a tela for menor que 480px, ou seja, celular */
