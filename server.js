@@ -80,7 +80,7 @@ app.delete("/pedidos/:id", function(req, res) {
     res.json ({mensagem: "Pedido removido com sucessso!"});
 });
 
-app.get("/pedidos.html", verficarLogin, function(req, res) {
+app.get("/pedidos.html", verificarLogin, function(req, res) {
     res.sendFile(path.join(__dirname, "public", "pedidos.html"));
 });
 
