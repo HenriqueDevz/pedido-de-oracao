@@ -10,22 +10,19 @@
     <div class="container">
         <h1>Pedido de Oração</h1>
         <p>Digite a senha para acessar</p>
-
         <label for="senha">Senha:</label>
         <input type="password" id="senha" placeholder="Digite sua senha">
         <button id="btnLogin">Entrar</button>
-
         <p id="mengasemErro" style="color: red; display: none;">Senha incorreta. Tente novamente.</p>
-
     </div>
-
 <script>
     document.getElementById("btnLogin").addEventListener("click", function() {
         const senha = document.getElementById("senha").value;
+
         fetch("/login", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({senha: senha})
+            body: JSON.stringify({ senha: senha })
         })
         .then(function(resposta) {
             return resposta.json();
@@ -41,6 +38,5 @@
          });
      });
   </script>
-
 </body>
 </html>
