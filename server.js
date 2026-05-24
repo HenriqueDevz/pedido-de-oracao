@@ -1,6 +1,8 @@
 const express = require("express");
-const Database = require("better-sqlite3")
+const Database = require("better-sqlite3");
+const path = require("path");
 const db = new Database(__dirname + "/pedidos.db");
+
 
 const SENHA_ADMIN = "oracao2026";
 db.exec(`
@@ -46,7 +48,7 @@ app.post("/pedidos", function(req, res) {
     const nome = req.body.nome;
     const pedido = req.body.pedido;
     if (!nome || !pedido) {
-        res.status(400).json({mensagem: "Nome e pedido são obrigatórios"});
+        return res.status(400).json({mensagem: "Nome e pedido são obrigatórios"});
     }
     if (nome.length > 20) {
         return res.status(400).json({mensagem: "Nome muito longo."});
@@ -76,8 +78,17 @@ app.delete("/pedidos/:id", function(req, res) {
         console.error("Erro ao deletar o pedido:", error);
         res.status(500).json({mensagem: "Erro ao remover o pedido."});
     }
+});
 
-    res.json ({mensagem: "Pedido removido com sucessso!"});
+app.get("/pedidos", function(req, res) {
+    try {
+        const buscar = db.prepare("SELECT * FROM pedidos");
+        const todosPedidos = buscar.all ();
+        res.json(todosPedidos);
+    } catch (erro) {
+        console.error("Erro ao buscar pedidos:", erro);
+        res.status(500).json({mensagem: "Erro ao buscar os pedidos."});
+    }
 });
 
 app.get("/pedidos.html", verificarLogin, function(req, res) {
