@@ -19,7 +19,7 @@ function carregarPedidos() {
             linha.style.borderBottom = "1px solid #d4a85a";
 
             linha.innerHTML = `
-                <td style="padding: 12px; color: #999;"${item.id}</td>
+                <td style="padding: 12px; color: #999;">${item.id}</td>
                 <td style="padding: 12px; font-weight: bold; color: #4a2f0a;">${item.nome}</td>
                 <td style="padding: 12px; color: #333;">${item.pedido}</td>
                 <td style="padding: 12px; color: #999; font-size: 12px;">${item.data}</td>
