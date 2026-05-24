@@ -87,7 +87,7 @@ function mostrarPedidos() {
         if (timeoutId){
             clearTimeout(timeoutId);
         }
-        timeoutID = setTimeout(function() {
+        timeoutId = setTimeout(function() {
             mostrarPedidos();
         }, 6000);
     });
