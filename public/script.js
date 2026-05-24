@@ -39,40 +39,27 @@ const versiculos = [
     "\"O amor é paciente, o amor é bondoso... tudo suporta, tudo crê, tudo espera.\" — 1 Coríntios 13:4-7",
     "\"Acima de tudo, porém, revesti-vos do amor, que é o vínculo da perfeição.\" — Colossenses 3:14"
 ];
-// Lista de versículos separados por tema:
-// apoio emocional, promessas de Deus, Jesus e família.
-// Math.random() vai escolher um diferente a cada vez que o site carregar.
 
 function mostrarVersiculo() {
     const indice = Math.floor(Math.random() * versiculos.length);
-    // Math.random() gera um número aleatório entre 0 e 1.
-    // Multiplicando pelo tamanho da lista, obtemos um número entre 0 e o tamanho da lista.
-    // Math.floor() arredonda para baixo, garantindo que seja um índice válido.
     const versiculo = versiculos[indice];
-    // Pega o versículo correspondente ao índice gerado.
     document.getElementById("versiculo").textContent = versiculo;
-    // Exibe o versículo no elemento com id "versiculo" no HTML.
 }
 
 let indicePedido = 0;
-// Guarda qual pedido está sendo exibido no momento.
-// Começa no 0, que é o primeiro pedido da lista.
+
 
 function mostrarCarrossel(pedidos) {
     const carrossel = document.getElementById("carrossel");
-    // Pega o elemento carrossel do HTML.
 
     if (pedidos.length === 0) {
         carrossel.innerHTML = "<p>Nenhum pedido ainda.</p>";
         return;
     }
-    // Se não houver pedidos, exibe mensagem e para.
 
     carrossel.innerHTML = "";
-    // Limpa antes de mostrar o próximo.
 
     const item = pedidos[indicePedido];
-    // Pega o pedido da posição atual.
 
     const div = document.createElement("div");
     const textoPedido = document.createElement("p");
@@ -82,14 +69,13 @@ function mostrarCarrossel(pedidos) {
     textoData.textContent = "📅 " + item.data;
     div.appendChild(textoPedido);
     div.appendChild(textoData);
-    // Cria um elemento com o nome e pedido.
 
     carrossel.appendChild(div);
-    // Adiciona na tela.
 
     indicePedido = (indicePedido + 1) % pedidos.length;
-    // Avança para o próximo. Quando chegar no último, volta ao primeiro.
 }
+
+let timeoutId = null;
 
 function mostrarPedidos() {
     fetch("/pedidos")
@@ -98,41 +84,37 @@ function mostrarPedidos() {
     })
     .then(function(pedidos) {
         mostrarCarrossel(pedidos);
-        // Mostra o pedido atual.
-
-        setTimeout(function() {
+        if (timeoutId){
+            clearTimeout(timeoutId);
+        }
+        timeoutID = setTimeout(function() {
             mostrarPedidos();
-        }, 4000);
-        // Após 2 segundos chama mostrarPedidos de novo,
-        // criando um loop que troca o pedido automaticamente.
+        }, 6000);
     });
 }
 
 function excluirPedido(id) {
-    fetch("/pedidos" + id, {
+    fetch("/pedidos/" + id, {
         method: "DELETE"
     })
     .then(function() {
+        indicePedido = 0;
         mostrarPedidos();
     });
 }
 
 const formulario = document.getElementById("formPedido");
-// Pega o formulário do HTML.
 
 formulario.addEventListener("submit", function(event) {
     event.preventDefault();
-    // Impede o formulário de recarregar a página.
 
     const nome = document.getElementById("nome").value;
     const pedido = document.getElementById("pedido").value;
-    // Pega os valores dos campos.
 
     if (nome === "" || pedido === "") {
         alert("Por Favor, preencha seu nome e seu pedido de oração!");
         return;
     }
-    // Se algum campo estiver vazio, exibe um alerta e para.
 
     fetch("/pedidos", {
         method: "POST",
@@ -149,7 +131,6 @@ formulario.addEventListener("submit", function(event) {
     })
     .then(function() {
         formulario.reset();
-        // Limpa os campos após enviar.
     });
 });
 
@@ -157,32 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
     mostrarPedidos();
     mostrarVersiculo();
 });
-// Quando a página terminar de carregar, chama mostrarPedidos() para iniciar o carrossel de pedidos.
+
 document.addEventListener("DOMContentLoaded", function() {
     mostrarPedidos();
 });
-// Inicia o carrossel ao carregar a página.
-
-
-// formulario.addEventListener("submit", function(event) {
-// Quando o formulario for enviado , execute esta função.
-// addEventListener - Adiciona um evento ao formulário, neste caso, o evento de "submit" (envio do formulário).
-// function(event) - A função que será executada quando o evento ocorrer. O parâmetro "event" representa o evento que ocorreu.
-
-// if (nome === "" || pedido === "") {
-// Verifica se nome estiver vazio OU pedido estiver vazio, ou seja, se algum dos campos não foi preenchido, exibe um alerta solicitando que o usuário preencha todos os campos.
-
-// let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
-// localStorage.getItem("pedidos") - Busca dados salvos com a chave "pedidos" ja salvos.
-// JSON.parse() - Transforma texto em lista JavaScript. Se não houver dados salvos, retorna um array vazio [].
-// || [] - Se não houver pedidos salvos, cria um lista vazia para armazenar os novos pedidos.
-
-// localStorage.setItem("pedidos", JSON.stringify(pedidos));
-// Agora estamos salvando a lista de pedidos atualizada no localStorage.
-// JSON.stringify() - Transforma a lista em texto.
-// setItem - Salva no navegador com a chave "pedidos" e o valor da lista de pedidos atualizada.
-
-
-// pedidos.forEach(function(item) {
-// forEach() - Percorre cada item da lista de pedidos e executa a função para cada um deles.
-// function(item) - A função que será executada para cada item da lista. O parâmetro "item" representa o pedido atual sendo processado.

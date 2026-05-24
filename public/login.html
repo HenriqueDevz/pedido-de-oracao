@@ -36,9 +36,7 @@
             } else {
                 document.getElementById("mengasemErro").style.display = "block";
                 document.getElementById("senha").value = "";
-                // Se a resposta do servidor indicar que o login foi bem-sucedido (dados.sucesso é true), o usuário é redirecionado para a página "index.html". Caso contrário, uma mensagem de erro é exibida, o campo de senha é limpo e o usuário pode tentar novamente.
                 document.getElementById("senha").focus();
-                // Após exibir a mensagem de erro e limpar o campo de senha, o foco é definido novamente no campo de senha para facilitar a próxima tentativa do usuário.
             }
          });
      });

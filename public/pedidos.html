@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos os Pedidos - Pedido de Oração</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="container">
+    <div class="container" style="max-width: 800px;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <h1>Pedido de Oração</h1>
+            <h1>Todos os Pedidos</h1>
             <a href="/logout" style="
         background-color: #6e450f;
         color: white;
@@ -20,15 +19,16 @@
         font-size: 13px;
         font-family: 'Cinzel', serif;
     ">Sair</a>
-        </div>
-        <nav style="
+</div>
+
+<nav style="
           display: flex;
           gap: 10px;
           margin-bottom: 24px;
           border-bottom: 1px solid #d4a85a;
           padding-bottom: 16px;
 ">
-            <a href="/index.html" style="
+    <a href="/index.html" style="
         flex: 1;
         text-align: center;
         padding: 10px;
@@ -39,7 +39,7 @@
         font-family: 'Cinzel', serif;
         font-size: 13px;
     ">Novo Pedido</a>"
-            <a href="/pedidos.html" style="
+    <a href="/pedidos.html" style="
         flex: 1;
         text-align: center;
         padding: 10px;
@@ -51,32 +51,32 @@
         font-size: 13px;
         border: 1.5px solid #6e450f;
     ">Todos os Pedidos</a>"
-        </nav>
-        <p>Compartilhe seu pedido e estaremos orando por você.</p>
-        
-
-
-        <form id="formPedido">
-            <label for="nome">Nome:</label><br>
-            <input type="text" id="nome" name="nome"><br><br>
-            <label for="pedido">Pedido de Oração:</label><br>
-            <textarea id="pedido" name="pedido"></textarea><br><br>
-            <button type="submit">Enviar Pedido</button>
-        </form>
-        <h2>Pedidos Recebidos</h2>
-        <div id="carrossel"></div>
-        <div id="versiculo"> style="
-            text-align: center;
-            margin-top: 20px;
-            padding: 16px;
-            border-top: 1px solid #d4a85a;
-            font-style: italic;
-            color: #6e450f;
-            font-family: 'Cinzel', serif;
-            line-height: 1.6;
-            ">
-        </div>
-        <script src="script.js"></script>
+</nav>
+<h2>Todos os Pedidos</h2>
+    <div style="overflow-x: auto;">
+        <table id ="tabelaPedidos" style="    
+            whidth: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 14px;
+">
+        <thead>
+            <tr style="background-color: #6e450f; color: white;">
+                <th style="padding: 12px; text-align: left;">#</th>
+                <th style="padding: 12px; text-align: left;">Nome</th>
+                <th style="padding: 12px; text-align: left;">Pedido</th>
+                <th style="padding: 12px; text-align: left;">Data</th>
+                <th style="padding: 12px; text-align: left;">Ação</th>
+            </tr>"
+        </thead>
+         <tbody id="corpoTabela">
+         </tbody>
+    </table>
+  </div>
+  <p id="semPedidos" style="text-align: center; color: #999; margin-top: 20px; display: none;">
+        Nenhum pedido de oração encontrado.
+  </p>
+</div>
+<script src="script-pedidos.js"></script>
 </body>
-
 </html>
