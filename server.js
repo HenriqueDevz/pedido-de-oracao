@@ -33,7 +33,7 @@ app.post("/login", function(req, res) {
     }
 });
 
-function verficarLogin(req, res, next) {
+function verificarLogin(req, res, next) {
     if (req.session.logado) {
         next();
     } else {
@@ -80,7 +80,7 @@ app.delete("/pedidos/:id", function(req, res) {
     res.json ({mensagem: "Pedido removido com sucessso!"});
 });
 
-app.get("/pedidos.html", verificarLogin, function(req, res) {
+app.get("/pedidos.html", verficarLogin, function(req, res) {
     res.sendFile(path.join(__dirname, "public", "pedidos.html"));
 });
 
@@ -90,7 +90,7 @@ app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "public", "login.html"));
 });
 
-app.get("/index.html", verficarLogin, function(req, res) {
+app.get("/index.html", verificarLogin, function(req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
 });
 
