@@ -1,4 +1,4 @@
-const versiculos = [
+const verses = [
     // Apoio emocional
     "\"O Senhor é o meu pastor e nada me faltará.\" — Salmos 23:1",
     "\"Lançai sobre ele toda a vossa ansiedade, porque ele tem cuidado de vós.\" — 1 Pedro 5:7",
@@ -40,105 +40,88 @@ const versiculos = [
     "\"Acima de tudo, porém, revesti-vos do amor, que é o vínculo da perfeição.\" — Colossenses 3:14"
 ];
 
-function mostrarVersiculo() {
-    const indice = Math.floor(Math.random() * versiculos.length);
-    const versiculo = versiculos[indice];
-    document.getElementById("versiculo").textContent = versiculo;
-}
-
-let indicePedido = 0;
-
-
-function mostrarCarrossel(pedidos) {
-    const carrossel = document.getElementById("carrossel");
-
-    if (pedidos.length === 0) {
-        carrossel.innerHTML = "<p>Nenhum pedido ainda.</p>";
-        return;
-    }
-
-    carrossel.innerHTML = "";
-
-    const item = pedidos[indicePedido];
-
-    const div = document.createElement("div");
-    const textoPedido = document.createElement("p");
-    textoPedido.textContent = item.nome + ": " + item.pedido;
-
-    const textoData = document.createElement("p");
-    textoData.textContent = "📅 " + item.data;
-    div.appendChild(textoPedido);
-    div.appendChild(textoData);
-
-    carrossel.appendChild(div);
-
-    indicePedido = (indicePedido + 1) % pedidos.length;
-}
+let carouselIndex = 0;
 
 let timeoutId = null;
 
-function mostrarPedidos() {
-    fetch("/pedidos")
-    .then(function(resposta) {
-        return resposta.json();
+function showRandomVerse() {
+    const index = Math.floor(Math.random()* verses.length);
+    document.getElementById("verse").textContent = verses[index];
+}
+
+function showCarousel(prayers) {
+    const carousel = document.getElementById("carousel");
+
+    if (prayers.length === 0) {
+        carousel.innerHTML = "<p>Nenhum pedido ainda.</p>";
+        return;
+    }
+
+    carousel.innerHTML = "";
+
+    const item = prayers[carouselIndex];
+
+    const div = document.createElement("div");
+    const prayerText = document.createElement("p");
+    prayerText.textContent = item.name + ": " + item.prayer;
+
+    const dateText = document.createElement("p");
+    dateText.textContent = "📅 " + item.date;
+    div.appendChild(prayerText);
+    div.appendChild(dateText);
+    carousel.appendChild(div);
+
+    carouselIndex = (carouselIndex + 1) % prayers.length;
+}
+
+function loadPrayers() {
+    fetch("/prayers")
+    .then(function(response) {
+        return response.json();
     })
-    .then(function(pedidos) {
-        mostrarCarrossel(pedidos);
+    .then(function(prayers) {
+        showCarousel(prayers);
         if (timeoutId){
             clearTimeout(timeoutId);
         }
         timeoutId = setTimeout(function() {
-            mostrarPedidos();
+            loadPrayers();
         }, 6000);
     });
 }
 
-function excluirPedido(id) {
-    fetch("/pedidos/" + id, {
-        method: "DELETE"
-    })
-    .then(function() {
-        indicePedido = 0;
-        mostrarPedidos();
-    });
-}
+const form = document.getElementById("prayerForm");
 
-const formulario = document.getElementById("formPedido");
-
-formulario.addEventListener("submit", function(event) {
+form.addEventListener("submit", function(event) {
     event.preventDefault();
 
-    const nome = document.getElementById("nome").value;
-    const pedido = document.getElementById("pedido").value;
+    const name = document.getElementById("name").value;
+    const prayer = document.getElementById("prayer").value;
 
-    if (nome === "" || pedido === "") {
+    if (name === "" || prayer === "") {
         alert("Por Favor, preencha seu nome e seu pedido de oração!");
         return;
     }
 
-    fetch("/pedidos", {
+    fetch("/prayers", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            nome: nome,
-            pedido: pedido
+            name: name,
+            prayer: prayer
         })
     })
-    .then(function(resposta) {
-        return resposta.json();
+    .then(function(response) {
+        return response.json();
     })
     .then(function() {
-        formulario.reset();
+        form.reset();
     });
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    mostrarPedidos();
-    mostrarVersiculo();
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    mostrarPedidos();
+    loadPrayers();
+    showRandomVerse();
 });

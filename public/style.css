@@ -105,7 +105,7 @@ h2 {
     margin-bottom: 16px;
 }
 
-#carrossel {
+#carousel {
     text-align: center;
     min-height: 80px;
     display: flex;
@@ -113,18 +113,18 @@ h2 {
     justify-content: center;
 }
 
-#carrossel div {
+#carousel div {
     animation: subirParaCima 0.6s ease forwards;
 }
 
-#carrossel p:first-child {
+#carousel p:first-child {
     font-size: 16px;
     font-weight: 700;
     color: #4a2f0a;
     margin-bottom: 6px;
 }
 
-#carrossel p:last-child {
+#carousel p:last-child {
     font-size: 12px;
     color: #999;
 }

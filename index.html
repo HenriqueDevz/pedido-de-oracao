@@ -1,71 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Oração</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <h1>Pedido de Oração</h1>
-            <a href="/logout" style="
-        background-color: #6e450f;
-        color: white;
-        padding: 8px 14px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 13px;
-        font-family: 'Cinzel', serif;
-    ">Sair</a>
-        </div>
-        <nav style="
+
+     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+       <h1>Pedido de Oração</h1>
+       <a href="/logout" style="
+          background-color: #6e450f;
+          color: white;
+          padding: 8px 14px;
+          border-radius: 8px;
+          text-decoration: none;
+          font-size: 13px;
+          font-family: 'Cinzel', serif;
+        ">Sair</a>
+     </div>
+     <nav style="
           display: flex;
           gap: 10px;
           margin-bottom: 24px;
           border-bottom: 1px solid #d4a85a;
           padding-bottom: 16px;
-">
-            <a href="/index.html" style="
-        flex: 1;
-        text-align: center;
-        padding: 10px;
-        background-color:#6e450f;
-        color: white;
-        border-radius: 8px;
-        text-decoration: none;
-        font-family: 'Cinzel', serif;
-        font-size: 13px;
-    ">Novo Pedido</a>
-            <a href="/pedidos.html" style="
-        flex: 1;
-        text-align: center;
-        padding: 10px;
-        background-color: white;
-        color: #6e450f;
-        border-radius: 8px;
-        text-decoration: none;
-        font-family: 'Cinzel', serif;
-        font-size: 13px;
-        border: 1.5px solid #6e450f;
-    ">Todos os Pedidos</a>
-        </nav>
-        <p>Compartilhe seu pedido e estaremos orando por você.</p>
-        
+      ">
+         <a href="/index.html" style="
+           flex: 1;
+           text-align: center;
+           padding: 10px;
+           background-color:#6e450f;
+           color: white;
+           border-radius: 8px;
+           text-decoration: none;
+           font-family: 'Cinzel', serif;
+           font-size: 13px;
+        ">Novo Pedido</a>
+         <a href="/prayers.html" style="
+           flex: 1;
+           text-align: center;
+           padding: 10px;
+           background-color: white;
+           color: #6e450f;
+           border-radius: 8px;
+           text-decoration: none;
+           font-family: 'Cinzel', serif;
+           font-size: 13px;
+           border: 1.5px solid #6e450f;
+         ">Todos os Pedidos</a>
+      </nav>
+      <p>Compartilhe seu pedido e estaremos orando por você.</p>
+    
+        <form id="prayerForm">
+            <label for="name">Nome:</label><br>
+            <input type="text" id="name" name="name"><br><br>
 
+            <label for="prayer">Pedido de Oração:</label><br>
+            <textarea id="prayer" name="prayer"></textarea><br><br>
 
-        <form id="formPedido">
-            <label for="nome">Nome:</label><br>
-            <input type="text" id="nome" name="nome"><br><br>
-            <label for="pedido">Pedido de Oração:</label><br>
-            <textarea id="pedido" name="pedido"></textarea><br><br>
             <button type="submit">Enviar Pedido</button>
         </form>
         <h2>Pedidos Recebidos</h2>
-        <div id="carrossel"></div>
-        <div id="versiculo" style="
+        <div id="carousel"></div>
+
+        <div id="verse" style="
             text-align: center;
             margin-top: 20px;
             padding: 16px;
@@ -74,9 +75,10 @@
             color: #6e450f;
             font-family: 'Cinzel', serif;
             line-height: 1.6;
-            ">
-        </div>
+        "></div>
+        
       </div>
+
     <script src="script.js"></script>
 </body>
 </html>
